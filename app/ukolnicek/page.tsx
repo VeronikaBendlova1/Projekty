@@ -1,31 +1,11 @@
-import { useEffect, useState } from "react";
-
-type Ukol = {
-  Id: number;
-  Nazev: string;
-  Datum: string;
-  Hotovo: boolean;
-  Smazano: boolean;
-};
-
-export default function Ukolnicek() {
-  const [ukoly, setUkoly] = useState<Ukol[]>([]);
-
-  useEffect(() => {
-    fetch("/api/ukoly")
-      .then((res) => res.json())
-      .then(setUkoly);
-  }, []);
-
+export default function Home() {
   return (
-    <main>
+    <main style={{ padding: "2rem", fontFamily: "sans-serif" }}>
       <h1>📝 Můj Úkolníček</h1>
       <ul>
-        {ukoly.map((u) => (
-          <li key={u.Id}>
-            {u.Hotovo ? "✅ " : "⬜ "} {u.Nazev} - {new Date(u.Datum).toLocaleString()}
-          </li>
-        ))}
+        <li>✅ Učit se Next.js</li>
+        <li>✅ Nasadit projekt na Vercel</li>
+        <li>⬜ Přidat databázi</li>
       </ul>
     </main>
   );

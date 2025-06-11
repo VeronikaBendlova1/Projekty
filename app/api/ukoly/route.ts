@@ -1,19 +1,14 @@
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import { NextRequest, NextResponse } from 'next/server';
+import { getAllUkoly, addUkol } from '@/lib/ukoly'; // uprav cestu dle složky
 
-// Příklad: načtení všech úkolů
-export async function getAllUkoly() {
-  return await prisma.ukoly.findMany()
+export async function GET(req: NextRequest) {
+  const ukoly = await getAllUkoly();
+  return NextResponse.json(ukoly);
 }
 
-// Příklad: přidání nového úkolu
-export async function addUkol(nazev: string, datum: Date, hotovo: boolean = false, smazano: boolean = false) {
-  return await prisma.ukoly.create({
-    data: {
-      Nazev: nazev,
-      Datum: datum,
-      Hotovo: hotovo,
-      Smazano: smazano,
-    },
-  })
+export async function POST(req: NextRequest) {
+  const body = await req.json();
+  const { nazev, datum } = body;
+  const newUkol = await addUkol(nazev, new Date(datum));
+  return NextResponse.json(newUkol, { status: 201 });
 }
