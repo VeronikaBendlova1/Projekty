@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAllUkoly, addUkol } from '@/lib/ukoly'; // uprav cestu dle složky
+import { getAllUkoly, addUkol } from '../../../lib/ukoly';
+ // uprav cestu dle složky
 
 export async function GET(req: NextRequest) {
   const ukoly = await getAllUkoly();
