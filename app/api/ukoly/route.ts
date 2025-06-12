@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAllUkoly, addUkol } from '../lib/ukoly';
+import { getAllUkoly, addUkol } from '../../lib/ukoly';
 
  // uprav cestu dle složky
 
